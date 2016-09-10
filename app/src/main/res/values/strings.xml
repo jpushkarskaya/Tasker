@@ -2,4 +2,25 @@
     <string name="app_name">Tasker</string>
     <string name="add_label">Add</string>
     <string name="new_task_label">Add a task...</string>
+
+    <string name="title_label">Title:</string>
+    <string name="due_label">Due:</string>
+    <string name="description_label">Details:</string>
+    <string name="category_label">Category:</string>
+    <string name="status_label">Status:</string>
+
+    <string-array name="category_array">
+        <item>HOME</item>
+        <item>WORK</item>
+        <item>FUN</item>
+        <item>EXERCISE</item>
+        <item>OTHER</item>
+    </string-array>
+
+    <string-array name="status_array">
+        <item>TO DO</item>
+        <item>DOING</item>
+        <item>DONE</item>
+    </string-array>
+
 </resources>

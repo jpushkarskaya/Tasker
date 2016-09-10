@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
+    tools:context="com.jpushkarskaya.tasker.AddEditActivity">
+
+    <TextView
+        android:id="@+id/tvTitleLabel"
+        style="@style/AddEditLabels"
+        android:text="@string/title_label"
+        android:layout_alignParentTop="true"/>
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/tvTitleLabel"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/tvTitleLabel"
+        android:layout_toRightOf="@+id/tvTitleLabel"/>
+
+    <View
+        android:id="@+id/div1"
+        style="@style/Divider"
+        android:layout_below="@+id/etTitle"/>
+
+    <TextView
+        android:id="@+id/tvDueLabel"
+        style="@style/AddEditLabels"
+        android:text="@string/due_label"
+        android:layout_below="@+id/div1"/>
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tvDueLabel"
+        android:layout_below="@id/div1"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"/>
+
+    <View
+        android:id="@+id/div2"
+        style="@style/Divider"
+        android:layout_below="@+id/date_picker"/>
+
+    <TextView
+        android:id="@+id/tvDescriptionLabel"
+        style="@style/AddEditLabels"
+        android:text="@string/description_label"
+        android:layout_below="@id/div2"/>
+
+    <ScrollView
+        android:id="@+id/svDescription"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_toRightOf="@id/tvDescriptionLabel"
+        android:layout_below="@id/div2"/>
+
+    <View
+        android:id="@+id/div3"
+        style="@style/Divider"
+        android:layout_below="@+id/svDescription"/>
+
+    <TextView
+        android:id="@+id/tvCategoryLabel"
+        style="@style/AddEditLabels"
+        android:text="@string/category_label"
+        android:layout_below="@id/div3" />
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvCategoryLabel"
+        android:layout_below="@id/div3"
+        android:entries="@array/category_array"/>
+
+    <View
+        android:id="@+id/div4"
+        style="@style/Divider"
+        android:layout_below="@+id/spinnerCategory"/>
+
+    <TextView
+        android:id="@+id/tvStatusLabel"
+        style="@style/AddEditLabels"
+        android:text="@string/status_label"
+        android:layout_below="@id/div4" />
+
+    <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/tvStatusLabel"
+        android:layout_below="@id/div4"
+        android:entries="@array/status_array"/>
+
+    <ImageButton
+        android:id="@+id/btnSave"
+        android:src="@drawable/image_save"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="110dp"
+        android:layout_marginStart="110dp"
+        android:onClick="onSave"/>
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:src="@drawable/image_delete"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="110dp"
+        android:layout_marginEnd="110dp"
+        android:onClick="onDelete"/>
+
+</RelativeLayout>
