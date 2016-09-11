@@ -8,11 +8,12 @@
     <color name="colorTitle">#1d4053</color>
     <color name="subTitle">#b4cfdf</color>
     <color name="divider">#a7918e</color>
-    <color name="background">#eae2d0</color>
+    <color name="background">#f2ecdf</color>
+    <color name="buttonBackground">#ede0c4</color>
 
 
     <color name="black">#66000000</color>
 
-    <color name="black_overlay">#66000000</color>
+    <color name="pale_black">#8c212528</color>
 
 </resources>

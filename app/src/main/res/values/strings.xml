@@ -1,12 +1,9 @@
 <resources>
-    <string name="app_name">Tasker</string>
+    <string name="app_name">TASKER</string>
     <string name="creator">Created By Jenny Pushkarskaya - 2016</string>
-    <string name="add_label">Add</string>
-    <string name="new_task_label">Add a task...</string>
 
     <string name="title_label">Title:</string>
     <string name="due_label">Due:</string>
-    <string name="description_label">Details:</string>
     <string name="category_label">Category:</string>
     <string name="status_label">Status:</string>
 

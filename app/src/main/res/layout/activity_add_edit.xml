@@ -14,60 +14,43 @@
         android:id="@+id/tvTitleLabel"
         style="@style/AddEditLabels"
         android:text="@string/title_label"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"/>
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/tvTitleLabel"
+        android:layout_alignTop="@id/tvTitleLabel"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/tvTitleLabel"
-        android:layout_toRightOf="@+id/tvTitleLabel"/>
+        android:layout_toEndOf="@id/tvTitleLabel"
+        android:layout_toRightOf="@id/tvTitleLabel"/>
 
     <View
-        android:id="@+id/div1"
+        android:id="@+id/div2"
         style="@style/Divider"
-        android:layout_below="@+id/etTitle"/>
+        android:layout_below="@id/etTitle" />
 
     <TextView
         android:id="@+id/tvDueLabel"
         style="@style/AddEditLabels"
         android:text="@string/due_label"
-        android:layout_below="@+id/div1"/>
+        android:layout_below="@id/div2"/>
 
     <DatePicker
         android:id="@+id/date_picker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/tvDueLabel"
-        android:layout_below="@id/div1"
+        android:layout_toRightOf="@id/tvDueLabel"
+        android:layout_below="@id/div2"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"/>
 
     <View
-        android:id="@+id/div2"
-        style="@style/Divider"
-        android:layout_below="@+id/date_picker"/>
-
-    <TextView
-        android:id="@+id/tvDescriptionLabel"
-        style="@style/AddEditLabels"
-        android:text="@string/description_label"
-        android:layout_below="@id/div2"/>
-
-    <ScrollView
-        android:id="@+id/svDescription"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_toRightOf="@id/tvDescriptionLabel"
-        android:layout_below="@id/div2"/>
-
-    <View
         android:id="@+id/div3"
         style="@style/Divider"
-        android:layout_below="@+id/svDescription"/>
+        android:layout_below="@id/date_picker"/>
 
     <TextView
         android:id="@+id/tvCategoryLabel"
@@ -86,7 +69,7 @@
     <View
         android:id="@+id/div4"
         style="@style/Divider"
-        android:layout_below="@+id/spinnerCategory"/>
+        android:layout_below="@id/spinnerCategory"/>
 
     <TextView
         android:id="@+id/tvStatusLabel"
@@ -104,10 +87,8 @@
 
     <ImageButton
         android:id="@+id/btnSave"
+        style="@style/Button"
         android:src="@drawable/image_save"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="110dp"
         android:layout_marginStart="110dp"
@@ -115,10 +96,8 @@
 
     <ImageButton
         android:id="@+id/btnDelete"
+        style="@style/Button"
         android:src="@drawable/image_delete"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginRight="110dp"
         android:layout_marginEnd="110dp"

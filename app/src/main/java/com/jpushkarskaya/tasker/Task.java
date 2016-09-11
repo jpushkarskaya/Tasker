@@ -9,8 +9,8 @@ public class Task {
 
     private int id;
     private String title;
-    private Date dueDate;
     private String details;
+    private Date dueDate;
     private String category;
     private String status;
 
@@ -18,14 +18,14 @@ public class Task {
         String[] components = taskString.split("-");
         int id = Integer.parseInt(components[0]);
         String title = components[1];
-        Date dueDate = new Date(Integer.parseInt(components[2]));
-        String details = components[3];
+        String details = components[2];
+        Date dueDate = new Date(Integer.parseInt(components[3]));
         String category = components[4];
         String status = components[5];
         this.id = id;
         this.title = title;
-        this.dueDate = dueDate;
         this.details = details;
+        this.dueDate = dueDate;
         this.category = category;
         this.status = status;
     }
@@ -33,8 +33,8 @@ public class Task {
     public Task(int id, String title, Date dueDate, String details, String category, String status) {
         this.id = id;
         this.title = title;
-        this.dueDate = dueDate;
         this.details = details;
+        this.dueDate = dueDate;
         this.category = category;
         this.status = status;
     }
@@ -63,20 +63,20 @@ public class Task {
         this.title = title;
     }
 
-    public Date getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
     public String getDetails() {
         return details;
     }
 
     public void setDetails(String details) {
         this.details = details;
+    }
+
+    public Date getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     public String getCategory() {
@@ -94,9 +94,9 @@ public class Task {
         builder.append("-");
         builder.append(title);
         builder.append("-");
-        builder.append(dueDate.getTime());
-        builder.append("-");
         builder.append(details);
+        builder.append("-");
+        builder.append(dueDate.getTime());
         builder.append("-");
         builder.append(category);
         builder.append("-");
