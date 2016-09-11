@@ -1,58 +1,42 @@
 package com.jpushkarskaya.tasker;
 
-import java.util.Date;
-
 /**
  * Created by epushkarskaya on 9/10/16.
  */
 public class Task {
 
-    private int id;
     private String title;
-    private String details;
-    private Date dueDate;
-    private String category;
-    private String status;
+    private int dueDay;
+    private int dueMonth;
+    private int dueYear;
+    private int category;
+    private int status;
+    private int dueDate;
 
     public Task(String taskString){
         String[] components = taskString.split("-");
-        int id = Integer.parseInt(components[0]);
-        String title = components[1];
-        String details = components[2];
-        Date dueDate = new Date(Integer.parseInt(components[3]));
-        String category = components[4];
-        String status = components[5];
-        this.id = id;
+        String title = components[0];
+        int dueDay = Integer.parseInt(components[1]);
+        int dueMonth = Integer.parseInt(components[2]);
+        int dueYear = Integer.parseInt(components[3]);
+        int category = Integer.parseInt(components[4]);
+        int status = Integer.parseInt(components[5]);
+
         this.title = title;
-        this.details = details;
-        this.dueDate = dueDate;
+        this.dueDay = dueDay;
+        this.dueMonth = dueMonth;
+        this.dueYear = dueYear;
         this.category = category;
         this.status = status;
     }
 
-    public Task(int id, String title, Date dueDate, String details, String category, String status) {
-        this.id = id;
+    public Task(String title, int dueDay, int dueMonth, int dueYear, int category, int status) {
         this.title = title;
-        this.details = details;
-        this.dueDate = dueDate;
+        this.dueDay = dueDay;
+        this.dueMonth = dueMonth;
+        this.dueYear = dueYear;
         this.category = category;
         this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -63,45 +47,74 @@ public class Task {
         this.title = title;
     }
 
-    public String getDetails() {
-        return details;
+    public int getDueDay() {
+        return dueDay;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public int getDueMonth() {
+        return dueMonth;
     }
 
-    public Date getDueDate() {
-        return dueDate;
+    public int getDueYear() {
+        return dueYear;
     }
 
-    public void setDueDate(Date dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public String getCategory() {
+    public int getCategoryId() {
         return category;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public int getStatusId() {
+        return status;
+    }
+
+    public String getCategory() {
+        if (category == 0){
+            return "HOME";
+        } else if (category == 1){
+            return "WORK";
+        } else if (category == 2){
+            return "FUN";
+        } else if (category == 3){
+            return "EXERCISE";
+        } else {
+            return "OTHER";
+        }
+    }
+
+    public String getStatus() {
+        if (status == 0){
+            return "TODO";
+        } else if (status == 1){
+            return "DOING";
+        } else {
+            return "DONE";
+        }
+    }
+
+    public String getDueDate() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(dueMonth);
+        builder.append("/");
+        builder.append(dueDay);
+        builder.append("/");
+        builder.append(dueYear);
+        return builder.toString();
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(id);
-        builder.append("-");
         builder.append(title);
         builder.append("-");
-        builder.append(details);
+        builder.append(dueDay);
         builder.append("-");
-        builder.append(dueDate.getTime());
+        builder.append(dueMonth);
+        builder.append("-");
+        builder.append(dueYear);
         builder.append("-");
         builder.append(category);
         builder.append("-");
         builder.append(status);
         return builder.toString();
     }
-
 }

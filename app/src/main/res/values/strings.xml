@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">TASKER</string>
-    <string name="creator">Created By Jenny Pushkarskaya - 2016</string>
+    <string name="creator"> -- Created By Jenny Pushkarskaya -- </string>
 
-    <string name="title_label">Title:</string>
+    <string name="title_label">Task:</string>
     <string name="due_label">Due:</string>
     <string name="category_label">Category:</string>
     <string name="status_label">Status:</string>
@@ -16,7 +16,7 @@
     </string-array>
 
     <string-array name="status_array">
-        <item>TO DO</item>
+        <item>TODO</item>
         <item>DOING</item>
         <item>DONE</item>
     </string-array>

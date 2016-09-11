@@ -3,28 +3,24 @@ package com.jpushkarskaya.tasker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.CheckedTextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 
 public class MainDisplayActivity extends AppCompatActivity {
 
-    private final String TAG = "MainDisplayActivity";
-    private final String file_name = "tasks.txt";
+    public static final String TASK_ID = "task_id";
+    public static final String POSITION_ID = "position_id";
 
-    private ArrayList<String> tasks;
-    private ArrayAdapter<String> tasksAdapter;
+    private TaskAdapter tasksAdapter;
     private ListView lvTasks;
+
+    private boolean debugging = true;
+    private boolean createCalled = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,57 +28,38 @@ public class MainDisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_display);
 
         lvTasks = (ListView) findViewById(R.id.lvTasks);
-
-        readItems();
         attachAdapter();
-        setUpListViewListener();
+        setUpClickListeners();
+
+        createCalled = true;
     }
 
-    private void attachAdapter(){
-        tasksAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_checked, tasks);
+    private void attachAdapter() {
+        List<Task> tasks;
+        if (debugging){
+            tasks = populateTestTasks();
+        } else {
+            tasks = TaskHelper.readTasks(this, getFilesDir());
+        }
+        tasksAdapter = new TaskAdapter(this, android.R.layout.simple_list_item_1, tasks);
         lvTasks.setAdapter(tasksAdapter);
     }
 
-    private void readItems(){
-        File filesDir = getFilesDir();
-        File tasksFile = new File(filesDir, file_name);
-        try {
-            tasks = new ArrayList<>(FileUtils.readLines(tasksFile));
-        } catch (IOException ex){
-            tasks = new ArrayList<>();
-        }
+    private List<Task> populateTestTasks() {
+        List<Task> testTasks = new ArrayList<>();
+        testTasks.add(new Task("Walk dog", 10, 3, 2016, 1, 1));
+        testTasks.add(new Task("Walk walk", 10, 4, 2016, 2, 1));
+        testTasks.add(new Task("Walk self", 10, 5, 2017, 1, 0));
+        return testTasks;
     }
 
-    private void setUpListViewListener() {
-        lvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                CheckedTextView textView = (CheckedTextView) view;
-                textView.setChecked(!textView.isChecked());
-            }
-        });
-
-        lvTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                tasks.remove(i);
-                tasksAdapter.notifyDataSetChanged();
-                writeItems();
-                return true;
-            }
-        });
-    }
-
-    private void writeItems(){
-        File filesDir = getFilesDir();
-        File tasksFile = new File(filesDir, file_name);
-        try {
-            FileUtils.writeLines(tasksFile, tasks);
-        } catch (IOException e) {
-            String errorMsg = "Couldn't save tasks :[";
-            Log.d(TAG, errorMsg);
-            Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!createCalled) {
+            tasksAdapter.swapItems(TaskHelper.readTasks(this, getFilesDir()));
         }
+        createCalled = false;
     }
 
     public void onAdd(View view) {
@@ -90,5 +67,26 @@ public class MainDisplayActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void setUpClickListeners() {
+        lvTasks.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent viewIntent = new Intent(MainDisplayActivity.this, AddEditActivity.class);
+                viewIntent.putExtra(TASK_ID, tasksAdapter.getTasks().get(i).toString());
+                viewIntent.putExtra(POSITION_ID, i);
+                startActivity(viewIntent);
+            }
+        });
 
+        lvTasks.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                List<Task> tasks = tasksAdapter.getTasks();
+                tasks.remove(i);
+                tasksAdapter.swapItems(tasks);
+                TaskHelper.writeTasks(MainDisplayActivity.this, getFilesDir(), tasksAdapter.getTasks());
+                return true;
+            }
+        });
+    }
 }

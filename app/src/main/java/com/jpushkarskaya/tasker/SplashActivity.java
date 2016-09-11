@@ -10,16 +10,18 @@ import com.vstechlab.easyfonts.EasyFonts;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private final int SPLASH_DISPLAY_LENGTH = 6000;
+    private static final int SPLASH_DISPLAY_LENGTH = 6000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         TextView tvSplash = (TextView) findViewById(R.id.tvSplash);
+        TextView tvCreator = (TextView) findViewById(R.id.tvCreator);
 
         try {
             tvSplash.setTypeface(EasyFonts.captureIt(this));
+            tvCreator.setTypeface(EasyFonts.greenAvocado(this));
         } catch (NullPointerException ex){
             // ruh roh. no cool font for you
         }
