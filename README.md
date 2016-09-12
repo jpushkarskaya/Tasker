@@ -25,21 +25,21 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] Add a splash screen
-* [ ] Add support for selecting the category for each todo item (and display in listview item)
-* [ ] Use Toasts to for user education 
+* [X] Add a splash screen
+* [X] Add support for selecting the category for each todo item (and display in listview item)
+* [X] Use Toasts to for user education 
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://imgur.com/a/FXlwG' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-I spent a lot of time debugging the list view. After adding new items to the list in the adapter, the list view was not showing the new item. I noticed that the data was being updated both in the txt file and in memory (via the debugger). After reading about the order of method execution and view generation, I figured out that the custom adapter class required me to override the getCount method. This debugging process took about 3 hours. 
+I spent a lot of time debugging the list view. After adding new items to the list in the adapter, the list view was not showing the new items. I noticed that the data was being updated both in the txt file and in memory. After reading about the order of method execution and view generation, I figured out that the custom adapter class required me to override the getCount method. This debugging process took about 3 hours. 
 
 ## License
 
