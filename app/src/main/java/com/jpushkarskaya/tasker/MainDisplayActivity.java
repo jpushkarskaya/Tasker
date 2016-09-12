@@ -26,7 +26,7 @@ public class MainDisplayActivity extends AppCompatActivity implements AdapterVie
         setContentView(R.layout.activity_main_display);
 
         lvTasks = (ListView) findViewById(R.id.lvTasks);
-        List<Task> tasks = TaskHelper.readTasks(this, getFilesDir());
+        List<Task> tasks = TaskHelper.readTasks(getFilesDir());
         tasksAdapter = new TaskAdapter(this, android.R.layout.simple_list_item_1, tasks);
 
         lvTasks.setAdapter(tasksAdapter);
@@ -40,7 +40,7 @@ public class MainDisplayActivity extends AppCompatActivity implements AdapterVie
     protected void onResume() {
         super.onResume();
         if (!onCreateCalled) {
-            tasksAdapter.swapItems(TaskHelper.readTasks(this, getFilesDir()));
+            tasksAdapter.swapItems(TaskHelper.readTasks(getFilesDir()));
         }
         onCreateCalled = false;
     }
@@ -63,7 +63,7 @@ public class MainDisplayActivity extends AppCompatActivity implements AdapterVie
         List<Task> tasks = tasksAdapter.getTasks();
         tasks.remove(i);
         tasksAdapter.swapItems(tasks);
-        TaskHelper.writeTasks(this, getFilesDir(), tasksAdapter.getTasks());
+        TaskHelper.writeTasks(getFilesDir(), tasksAdapter.getTasks());
         return true;
     }
 }

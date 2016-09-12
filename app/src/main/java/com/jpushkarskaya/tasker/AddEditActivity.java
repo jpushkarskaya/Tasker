@@ -57,7 +57,7 @@ public class AddEditActivity extends AppCompatActivity {
             int status = spinnerStatus.getSelectedItemPosition();
 
             Task task = new Task(title, day, month, year, category, status);
-            ArrayList<Task> oldTasks = TaskHelper.readTasks(this, getFilesDir());
+            ArrayList<Task> oldTasks = TaskHelper.readTasks(getFilesDir());
 
             int position = getIntent().getIntExtra(MainDisplayActivity.POSITION_ID, -1);
 
@@ -68,7 +68,7 @@ public class AddEditActivity extends AppCompatActivity {
                 oldTasks.add(task);
             }
 
-            TaskHelper.writeTasks(this, getFilesDir(), oldTasks);
+            TaskHelper.writeTasks(getFilesDir(), oldTasks);
 
             Intent returnIntent = new Intent();
             setResult(RESULT_OK, returnIntent);

@@ -1,8 +1,5 @@
 package com.jpushkarskaya.tasker;
 
-import android.content.Context;
-import android.widget.Toast;
-
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -16,7 +13,7 @@ public class TaskHelper {
 
     private static final String file_name = "tasks_db.txt";
 
-    public static void writeTasks(Context context, File filesDir, List<Task> tasks) {
+    public static void writeTasks(File filesDir, List<Task> tasks) {
         File tasksFile = new File(filesDir, file_name);
 
         try {
@@ -26,12 +23,12 @@ public class TaskHelper {
             }
             FileUtils.writeLines(tasksFile, taskStrings);
         } catch (Exception e) {
-            Toast.makeText(context, "Could not export data!", Toast.LENGTH_SHORT).show();
+            // is ok
         }
 
     }
 
-    public static ArrayList<Task> readTasks(Context context, File filesDir) {
+    public static ArrayList<Task> readTasks(File filesDir) {
         ArrayList<Task> tasks = new ArrayList<>();
         File tasksFile = new File(filesDir, file_name);
 
@@ -42,7 +39,7 @@ public class TaskHelper {
                     tasks.add(new Task(taskString));
             }
         } catch (Exception ex){
-            Toast.makeText(context, "Could not read!", Toast.LENGTH_SHORT).show();
+            // is ok
         }
 
         return tasks;
