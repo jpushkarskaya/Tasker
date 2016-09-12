@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -40,7 +41,9 @@ public class MainDisplayActivity extends AppCompatActivity implements AdapterVie
     protected void onResume() {
         super.onResume();
         if (!onCreateCalled) {
-            tasksAdapter.swapItems(TaskHelper.readTasks(getFilesDir()));
+            ArrayList<Task> alldaTasks = TaskHelper.readTasks(getFilesDir());
+            tasksAdapter.swapItems(alldaTasks);
+            lvTasks.setAdapter(lvTasks.getAdapter());
         }
         onCreateCalled = false;
     }
@@ -66,4 +69,5 @@ public class MainDisplayActivity extends AppCompatActivity implements AdapterVie
         TaskHelper.writeTasks(getFilesDir(), tasksAdapter.getTasks());
         return true;
     }
+
 }

@@ -37,6 +37,11 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         return view;
     }
 
+    @Override
+    public int getCount(){
+        return tasks.size();
+    }
+
     public void swapItems(List<Task> tasks) {
         this.tasks = tasks;
         notifyDataSetChanged();

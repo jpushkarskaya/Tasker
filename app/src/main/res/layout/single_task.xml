@@ -41,7 +41,7 @@
                android:layout_width="22dp"
                android:layout_height="22dp"
                android:src="@drawable/time"
-               android:layout_marginLeft="10dp"/>
+               android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:id="@+id/tvDue"
