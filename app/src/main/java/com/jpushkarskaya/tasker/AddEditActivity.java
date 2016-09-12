@@ -54,16 +54,20 @@ public class AddEditActivity extends AppCompatActivity {
             int month = datePicker.getMonth();
             int year = datePicker.getYear();
             int category = spinnerCategory.getSelectedItemPosition();
-            int status = spinnerCategory.getSelectedItemPosition();
+            int status = spinnerStatus.getSelectedItemPosition();
 
             Task task = new Task(title, day, month, year, category, status);
             ArrayList<Task> oldTasks = TaskHelper.readTasks(this, getFilesDir());
 
             int position = getIntent().getIntExtra(MainDisplayActivity.POSITION_ID, -1);
+
             if (position != -1){
                 oldTasks.remove(position);
+                oldTasks.add(position, task);
+            } else {
+                oldTasks.add(task);
             }
-            oldTasks.add(task);
+
             TaskHelper.writeTasks(this, getFilesDir(), oldTasks);
 
             Intent returnIntent = new Intent();

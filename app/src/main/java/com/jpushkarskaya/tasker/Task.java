@@ -11,7 +11,6 @@ public class Task {
     private int dueYear;
     private int category;
     private int status;
-    private int dueDate;
 
     public Task(String taskString){
         String[] components = taskString.split("-");
@@ -41,10 +40,6 @@ public class Task {
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public int getDueDay() {

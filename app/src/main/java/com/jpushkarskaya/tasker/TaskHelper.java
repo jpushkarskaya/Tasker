@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class TaskHelper {
 
-    private static final String file_name = "task_db7.txt";
+    private static final String file_name = "tasks_db.txt";
 
     public static void writeTasks(Context context, File filesDir, List<Task> tasks) {
         File tasksFile = new File(filesDir, file_name);
